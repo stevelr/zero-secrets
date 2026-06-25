@@ -1,0 +1,34 @@
+[package]
+name = "zero-secrets"
+version = "0.2.0"
+edition = "2024"
+description = "Zeroizing secret wrappers (SecretString / SecretBytes / SecretArray) backed by RustCrypto zeroize."
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+zeroize = { version = "1.9.0", features = ["alloc", "derive"] }
+
+[workspace.lints.rust]
+unsafe_code = { level = "forbid", priority = 1 }
+
+[workspace.lints.clippy]
+pedantic = { level = "deny", priority = -1 }
+nursery = { level = "deny", priority = -1 }
+# missing_errors_doc = { level = "allow", priority = 0 }
+
+# No-panic hardening
+# These are `restriction`-group lints, set
+# individually at default priority so they coexist with the pedantic/nursery
+# groups above (priority -1). unwrap/expect/panic are allowed in tests via
+# clippy.toml; indexing_slicing in tests via #![cfg_attr(test, allow(...))].
+unwrap_used = { level = "deny", priority = 0 }
+expect_used = { level = "deny", priority = 0 }
+panic = { level = "deny", priority = 0 }
+unreachable = { level = "deny", priority = 0 }
+todo = { level = "deny", priority = 0 }
+unimplemented = { level = "deny", priority = 0 }
+indexing_slicing = { level = "deny", priority = 0 }
+get_unwrap = { level = "deny", priority = 0 }
+panic_in_result_fn = { level = "deny", priority = 0 }
