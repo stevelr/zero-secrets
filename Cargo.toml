@@ -3,6 +3,9 @@ name = "zero-secrets"
 version = "0.2.0"
 edition = "2024"
 description = "Zeroizing secret wrappers (SecretString / SecretBytes / SecretArray) backed by RustCrypto zeroize."
+license = "MIT"
+keywords = ["secret", "secure", "cryptography", "zero", "memory"]
+categories = ["cryptography", "memory-management"]
 
 [lib]
 path = "src/lib.rs"
